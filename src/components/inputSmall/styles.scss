@@ -1,0 +1,19 @@
+a {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+
+  text-decoration: none;
+  color: #000;
+  padding: 12px 3em;
+  border-radius: 5px;
+  border: none;
+  transition: 100ms linear;
+  font-family: "JetBrains Mono";
+
+  &:hover {
+    cursor: pointer;
+    background-color: #292631;
+    color: #fff;
+  }
+}

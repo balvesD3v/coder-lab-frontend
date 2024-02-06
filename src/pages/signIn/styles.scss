@@ -1,0 +1,38 @@
+.container {
+  background-color: #292631;
+  h1 {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    color: #6c63ff;
+    font-family: "JetBrains Mono";
+  }
+}
+
+.form-styled {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10em;
+
+  height: 100vh;
+
+  img {
+    height: 400px;
+  }
+}
+
+.input-field {
+  background: #6c63ff;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  padding: 5em;
+  border-radius: 1em;
+
+  h2 {
+    font-family: "JetBrains Mono";
+    color: #fff;
+  }
+}

@@ -1,0 +1,40 @@
+.input-container {
+  display: flex;
+  width: 348px;
+  height: 48px;
+  align-items: center;
+  gap: 14px;
+  border-radius: 8px;
+  background-color: #0d1d25;
+  position: relative;
+  transition: 250ms ease-in-out;
+
+  &:focus-within {
+    box-shadow: 0 0 0 3px #065e7c;
+
+    svg {
+      color: #6c63ff;
+      transition: 250ms ease-in-out;
+    }
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border-radius: 8px;
+    font-family: "JetBrains Mono";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    outline: none;
+    color: #fff;
+  }
+
+  svg {
+    position: absolute;
+    left: 1rem;
+  }
+}
