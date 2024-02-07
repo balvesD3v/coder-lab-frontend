@@ -10,12 +10,7 @@ button {
   border-radius: 5px;
   border: none;
   transition: 100ms linear;
-  font-family: "Poppins";
-
-  && {
-    font-size: 1rem;
-    font-weight: lighter;
-  }
+  font-family: "JetBrains Mono";
 
   &:hover {
     cursor: pointer;

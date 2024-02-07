@@ -11,6 +11,9 @@ export const Home = () => {
         <div className="search-wrapper">
           <input className="search" type="text" />
         </div>
+        <div>
+          <a href="/new">new</a>
+        </div>
         <div className="user">user</div>
       </div>
 

@@ -12,6 +12,11 @@
     gap: 1em;
     padding: 2em 5em;
 
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
     @media (max-width: 426px) {
       padding: 2em;
 
