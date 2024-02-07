@@ -1,0 +1,23 @@
+textarea {
+  resize: none;
+  height: 200px;
+  border-radius: 8px;
+  background: #0d161b;
+  outline: none;
+  transition: 250ms ease-in-out;
+  border: none;
+  padding: 14px;
+  color: #fff;
+
+  &::placeholder {
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 16px */
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 3px #04d361;
+  }
+}
