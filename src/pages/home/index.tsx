@@ -2,7 +2,6 @@ import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "./styles.scss";
 import { Product } from "../../components/product";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { useEffect, useState } from "react";
 
 export const Home = () => {
   return (

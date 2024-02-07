@@ -1,5 +1,5 @@
 import "./styles.scss";
-import { FaAngleLeft, FaMinus, FaPlus } from "react-icons/fa6";
+import { FaAngleLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import imageTeste from "../../assets/Mask group.png";
 
