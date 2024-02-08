@@ -16,7 +16,7 @@ export function SignIn() {
             <Input type="text" placeholder="email" icon={FaRegEnvelope} />
             <Input type="password" placeholder="password" icon={FaLock} />
 
-            <InputSmall link={"/"} title="Fazer Conta" />
+            <InputSmall title="Fazer Conta" />
           </div>
         </form>
 

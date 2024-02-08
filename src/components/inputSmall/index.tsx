@@ -1,13 +1,14 @@
+import React from "react";
 import "./styles.scss";
 
 interface InputProps {
-  link: string;
   title: string;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export const InputSmall: React.FC<InputProps> = ({ link, title, ...rest }) => {
+export const InputSmall: React.FC<InputProps> = ({ title, onClick }) => {
   return (
-    <a href={link} type="button" {...rest}>
+    <a type="button" onClick={onClick}>
       {title}
     </a>
   );
