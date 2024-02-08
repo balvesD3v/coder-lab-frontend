@@ -33,7 +33,7 @@ export const Details = () => {
             <h1>Produto</h1>
             <p>Descrição</p>
 
-            <Button title="Atualizar Prato" />
+            <Button title="Atualizar Prato" link="/edit/:id" />
           </div>
         </div>
       </div>
