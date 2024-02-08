@@ -1,8 +1,7 @@
-a {
+.input-small {
   display: flex;
   justify-content: center;
   background-color: #fff;
-
   text-decoration: none;
   color: #000;
   padding: 12px 3em;
@@ -13,7 +12,7 @@ a {
 
   &:hover {
     cursor: pointer;
-    background-color: #292631;
-    color: #fff;
+    background-color: #e4e4e4;
+    color: #000;
   }
 }

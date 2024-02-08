@@ -17,13 +17,13 @@ interface AuthContextType {
   user: UserData | null;
 }
 
-export const AuthContext = createContext<AuthContextType | undefined>(
-  undefined
-);
-
 interface AuthProviderProps {
   children: ReactNode;
 }
+
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 function AuthProvider({ children }: AuthProviderProps) {
   const [data, setData] = useState<UserData | null>(null);
@@ -36,8 +36,9 @@ function AuthProvider({ children }: AuthProviderProps) {
     password: string;
   }) {
     try {
-      const response = await api.post("/session", { email, password });
+      const response = await api.post("session", { email, password });
       const { user, token } = response.data;
+      console.log(user);
 
       localStorage.setItem("@coderlab:user", JSON.stringify(user));
       localStorage.setItem("@coderlab:token", token);
@@ -55,16 +56,19 @@ function AuthProvider({ children }: AuthProviderProps) {
   }
 
   useEffect(() => {
-    const user = localStorage.getItem("@coderlab:user");
+    const userJson = localStorage.getItem("@coderlab:user");
     const token = localStorage.getItem("@coderlab:token");
 
-    if (user && token) {
+    if (userJson && token) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      setData({
-        token,
-        user: JSON.parse(user),
-      });
+      try {
+        const user = JSON.parse(userJson);
+        console.log(userJson);
+        setData({ token, user });
+      } catch (error) {
+        console.error("Erro ao analisar dados do usuário:", error);
+      }
     }
   }, []);
 
@@ -77,6 +81,9 @@ function AuthProvider({ children }: AuthProviderProps) {
 
 function useAuth() {
   const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be inside authProvider");
+  }
   return context;
 }
 

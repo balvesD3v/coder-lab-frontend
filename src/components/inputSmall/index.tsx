@@ -8,7 +8,7 @@ interface InputProps {
 
 export const InputSmall: React.FC<InputProps> = ({ title, onClick }) => {
   return (
-    <a type="button" onClick={onClick}>
+    <a className="input-small" type="button" onClick={onClick}>
       {title}
     </a>
   );
