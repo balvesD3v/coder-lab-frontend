@@ -12,9 +12,27 @@
     gap: 1em;
     padding: 2em 5em;
 
-    a {
+    .coders {
+      font-family: "JetBrains Mono";
+      cursor: pointer;
+      text-decoration: none;
+      color: #e1e1e6;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .button-new {
       text-decoration: none;
       color: #fff;
+      background-color: #750310;
+      padding: 1em 3em;
+      border-radius: 0.5em;
+
+      &:hover {
+        background-color: #ab222e;
+      }
     }
 
     @media (max-width: 426px) {

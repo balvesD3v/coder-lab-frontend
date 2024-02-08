@@ -8,14 +8,16 @@ export const Details = () => {
   return (
     <main>
       <div className="header">
-        <h3>CODER's Menu</h3>
+        <a className="coders" href="/">
+          CODER's Menu
+        </a>
         <div className="search-wrapper">
           <input className="search" type="text" />
         </div>
         <div>
-          <a className="new" href="/new">
-            new
-          </a>
+          <div>
+            <Button title="new" link="/new" />
+          </div>
         </div>
         <div className="user">user</div>
       </div>

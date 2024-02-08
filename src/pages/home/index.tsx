@@ -2,17 +2,20 @@ import "./styles.scss";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import { Product } from "../../components/product";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { Button } from "../../components/button";
 
 export const Home = () => {
   return (
     <div className="container">
       <div className="header">
-        <h3>CODER's Menu</h3>
+        <a className="coders" href="/">
+          CODER's Menu
+        </a>
         <div className="search-wrapper">
           <input className="search" type="text" />
         </div>
         <div>
-          <a href="/new">new</a>
+          <Button title="new" link="/new" />
         </div>
         <div className="user">user</div>
       </div>
