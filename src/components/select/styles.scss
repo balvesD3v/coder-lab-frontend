@@ -1,4 +1,4 @@
-div {
+.select {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -30,7 +30,7 @@ div {
     border: none;
 
     &:focus-within {
-      box-shadow: 0 0 0 3px #04d361;
+      box-shadow: 0 0 0 3px #065e7c;
     }
   }
 }

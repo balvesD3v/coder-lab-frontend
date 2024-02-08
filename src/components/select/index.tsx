@@ -4,8 +4,7 @@ interface SelectProps {}
 
 export const Select: React.FC<SelectProps> = ({ ...rest }) => {
   return (
-    <div>
-      <label htmlFor="">Categoria</label>
+    <div className="select">
       <select name="" id="" {...rest}>
         <option value="" selected disabled hidden>
           Selecione uma opção

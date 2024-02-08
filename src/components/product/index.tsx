@@ -24,7 +24,7 @@ export const Product: React.FC<ProductProps> = ({
   }
 
   return (
-    <div className="DivStyled">
+    <div className="card">
       <img src={imageTeste} alt="Plate" onClick={handleNavigation} />
       <div className="DivInfo">
         <h3>

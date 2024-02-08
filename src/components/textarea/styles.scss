@@ -8,9 +8,10 @@ textarea {
   border: none;
   padding: 14px;
   color: #fff;
+  width: 100%;
 
   &::placeholder {
-    font-family: Roboto;
+    font-family: "JetBrains Mono";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -18,6 +19,6 @@ textarea {
   }
 
   &:focus-within {
-    box-shadow: 0 0 0 3px #04d361;
+    box-shadow: 0 0 0 3px #065e7c;
   }
 }

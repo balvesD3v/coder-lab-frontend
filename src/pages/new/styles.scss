@@ -1,0 +1,24 @@
+.DivStyled {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  padding: 0 10em;
+  background-color: #292631;
+}
+
+h1 {
+  color: #fff;
+  margin-bottom: 1em;
+}
+
+.InputField {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+.button-save {
+  margin-top: 2em;
+}

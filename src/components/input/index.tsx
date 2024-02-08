@@ -1,7 +1,7 @@
 import "./styles.scss";
 
 interface InputProps {
-  icon: React.ComponentType;
+  icon?: React.ComponentType;
   placeholder: string;
   type: string;
 }

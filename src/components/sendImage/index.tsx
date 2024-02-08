@@ -5,8 +5,7 @@ interface SendImage {}
 
 export const SendImage: React.FC<SendImage> = ({ ...rest }) => {
   return (
-    <div>
-      <span> Imagem do prato </span>
+    <div className="send">
       <label htmlFor="fileInput">
         <MdOutlineFileUpload aria-label="Ícone de upload de arquivo" />
         Selecione imagem

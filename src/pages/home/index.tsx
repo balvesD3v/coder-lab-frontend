@@ -1,5 +1,5 @@
-import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import "./styles.scss";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import { Product } from "../../components/product";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
