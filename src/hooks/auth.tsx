@@ -7,16 +7,26 @@ import {
 } from "react";
 import { api } from "../services/api";
 
-interface AuthContextType {}
+interface UserData {
+  user: any;
+  token: string;
+}
 
-export const AuthContext = createContext<AuthContextType | undefined>({});
+interface AuthContextType {
+  signIn: (credentials: { email: string; password: string }) => Promise<void>;
+  user: UserData | null;
+}
+
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const [data, setData] = useState<Object>({});
+  const [data, setData] = useState<UserData | null>(null);
 
   async function signIn({
     email,
@@ -26,7 +36,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     password: string;
   }) {
     try {
-      const response = await api.post("session", { email, password });
+      const response = await api.post("/session", { email, password });
       const { user, token } = response.data;
 
       localStorage.setItem("@coderlab:user", JSON.stringify(user));
@@ -59,7 +69,9 @@ function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signIn, user: data }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 
