@@ -8,6 +8,7 @@ import {
 import { api } from "../services/api";
 import { User } from "../@types/user";
 import { SessionData } from "../@types/session";
+import { toast } from "react-toastify";
 
 interface AuthContextType {
   signIn: (credentials: { email: string; password: string }) => Promise<void>;
@@ -54,9 +55,9 @@ function AuthProvider({ children }: AuthProviderProps) {
       setData(data);
     } catch (error: any) {
       if (error.response) {
-        alert(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        alert("Não foi possível entrar.");
+        toast.error("Não foi possível entrar.");
       }
     }
   }
