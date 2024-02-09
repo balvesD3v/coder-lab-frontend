@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 import image from "../../assets/undraw_sign_up_n6im (1).svg";
 import { Input } from "../../components/input";
 import { FaUser, FaLock, FaRegEnvelope } from "react-icons/fa6";
-import { InputSmall } from "../../components/inputSmall";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
@@ -29,7 +28,7 @@ export const SignUp: React.FC = () => {
         email: email.email,
         password: password.password,
       };
-      const response = await api.post("/users", userData);
+      await api.post("/users", userData);
       toast.success("user successfully registered");
     } catch (error: any) {
       if (
@@ -74,7 +73,7 @@ export const SignUp: React.FC = () => {
             />
 
             <Button onClick={handleSignUp}>
-              <label htmlFor="">Fazer Login</label>
+              <label htmlFor="">Criar conta</label>
             </Button>
 
             <a className="login" href="/login">

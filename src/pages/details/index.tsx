@@ -1,7 +1,6 @@
 import "./styles.scss";
 import { FaAngleLeft } from "react-icons/fa6";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import imageTeste from "../../assets/Mask group.png";
 import { Button } from "../../components/button";
 import { useEffect, useState } from "react";
 import { ProductData } from "../../@types/product";

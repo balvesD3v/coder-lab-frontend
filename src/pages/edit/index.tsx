@@ -92,7 +92,7 @@ export const Edit = () => {
         formData.append("file", imageFile);
       }
 
-      const { data } = await api.patch(`/product/${id}`, formData, {
+      await api.patch(`/product/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -139,7 +139,7 @@ export const Edit = () => {
             <Select
               values={categories}
               onChange={handleCategoryChange}
-              id={productData.category?.id}
+              id={selectedCategoryId}
             />
           </div>
           <div className="down">

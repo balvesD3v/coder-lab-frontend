@@ -6,11 +6,9 @@ import { useAuth } from "../../hooks/auth";
 import { useEffect, useState } from "react";
 import { ProductData } from "../../@types/product";
 import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  const { token, signOut } = useAuth();
-  const navigate = useNavigate();
+  const { token } = useAuth();
   const [products, setProducts] = useState<ProductData[]>([]);
 
   const handleGetAllProducts = async () => {
@@ -23,7 +21,7 @@ export const Home = () => {
 
   useEffect(() => {
     handleGetAllProducts();
-  }, []);
+  });
 
   return (
     <div className="container">

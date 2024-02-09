@@ -2,7 +2,6 @@ import "./styles.scss";
 import image from "../../assets/undraw_visionary_technology_re_jfp7.svg";
 import { Input } from "../../components/input";
 import { FaLock, FaRegEnvelope } from "react-icons/fa6";
-import { InputSmall } from "../../components/inputSmall";
 import { useAuth } from "../../hooks/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
