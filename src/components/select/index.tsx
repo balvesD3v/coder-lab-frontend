@@ -21,7 +21,7 @@ export const Select: React.FC<SelectProps> = ({ id, onChange, values }) => {
         defaultValue={values.find((value) => value.id === id)?.name}
       >
         <option value="" selected disabled hidden>
-          Selecione uma opção
+          Choose an options
         </option>
         {values.map((value) => (
           <option value={value.id}>{value?.name}</option>

@@ -7,12 +7,14 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
 import { Button } from "../../components/button";
+import { useNavigate } from "react-router-dom";
 
 type Name = { name: string };
 type Email = { email: string };
 type Password = { password: string };
 
 export const SignUp: React.FC = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState<Name>({ name: "" });
   const [email, setEmail] = useState<Email>({ email: "" });
   const [password, setPassword] = useState<Password>({ password: "" });
@@ -28,8 +30,9 @@ export const SignUp: React.FC = () => {
         email: email.email,
         password: password.password,
       };
-      await api.post("/users", userData);
       toast.success("user successfully registered");
+      navigate("/login");
+      await api.post("/users", userData);
     } catch (error: any) {
       if (
         error.response &&
@@ -52,7 +55,7 @@ export const SignUp: React.FC = () => {
 
         <form action="">
           <div className="input-field">
-            <h2>Crie sua conta</h2>
+            <h2>Create your account</h2>
             <Input
               type="text"
               placeholder="user"
@@ -73,11 +76,11 @@ export const SignUp: React.FC = () => {
             />
 
             <Button onClick={handleSignUp}>
-              <label htmlFor="">Criar conta</label>
+              <label htmlFor="">Create Account</label>
             </Button>
 
             <a className="login" href="/login">
-              Já tenho uma conta
+              I already have an account
             </a>
           </div>
         </form>

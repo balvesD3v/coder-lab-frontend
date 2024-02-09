@@ -17,7 +17,7 @@ export const SendImage: React.FC<SendImageProps> = ({ onImageSelect }) => {
     <div className="send">
       <label htmlFor="fileInput">
         <MdOutlineFileUpload aria-label="Ícone de upload de arquivo" />
-        Selecione imagem
+        Choose an image
       </label>
       <input
         type="file"

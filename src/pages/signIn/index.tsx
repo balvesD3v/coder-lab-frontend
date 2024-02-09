@@ -25,7 +25,7 @@ export function SignIn() {
       <div className="form-styled">
         <form action="">
           <div className="input-field">
-            <h2>Faça login</h2>
+            <h2>Log in</h2>
             <Input
               type="text"
               placeholder="email"
@@ -40,11 +40,11 @@ export function SignIn() {
             />
 
             <Button onClick={handleSignIn}>
-              <label htmlFor="">Fazer Login</label>
+              <label htmlFor="">Login</label>
             </Button>
 
             <a className="register" href="/">
-              Crie sua conta
+              Create Account
             </a>
           </div>
         </form>

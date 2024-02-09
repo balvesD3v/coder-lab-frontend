@@ -53,6 +53,7 @@ function AuthProvider({ children }: AuthProviderProps) {
       api.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 
       setData(data);
+      toast.success("Login Success");
     } catch (error: any) {
       if (error.response) {
         toast.error(error.response.data.message);

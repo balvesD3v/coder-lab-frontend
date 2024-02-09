@@ -70,7 +70,7 @@ export const New = () => {
         },
       });
 
-      toast.success("Prato criado com sucesso!");
+      toast.success("Product created successfully!");
 
       navigate("/");
     } catch (error: any) {
