@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <Routes />
-      <ToastContainer theme="colored" />
+      <ToastContainer theme="colored" stacked />
     </AuthProvider>
   </React.StrictMode>
 );

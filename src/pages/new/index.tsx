@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { InputSmall } from "../../components/inputSmall";
 import { InputPrice } from "../../components/inputPrice";
 import { Category } from "../../@types/category";
+import { Button } from "../../components/button";
 
 export const New = () => {
   const navigate = useNavigate();
@@ -131,7 +132,9 @@ export const New = () => {
       </section>
 
       <div className="button-save">
-        <InputSmall title="Salvar alterações" onClick={handleNewDish} />
+        <Button onClick={handleNewDish}>
+          <label htmlFor="">Salvar Alterações</label>
+        </Button>
       </div>
     </main>
   );

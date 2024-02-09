@@ -12,6 +12,7 @@ import { productUpdated } from "../../@types/productUpdated";
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
+import { InputSmall } from "../../components/inputSmall";
 
 export const Edit = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export const Edit = () => {
   const { token } = useAuth();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
+  const [category, setCategory] = useState("");
   const [categories, setCategories] = useState<Category[]>([]);
   const [productData, setProductData] = useState<productUpdated>({
     id: "",
@@ -69,6 +71,14 @@ export const Edit = () => {
 
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategoryId(categoryId);
+
+    setProductData((prevData) => ({
+      ...prevData,
+      category: {
+        id: categoryId,
+        name: "",
+      },
+    }));
   };
 
   const handleSaveChanges = async () => {
@@ -77,6 +87,8 @@ export const Edit = () => {
       formData.append("name", String(productData.name));
       formData.append("description", String(productData.description));
       formData.append("price", String(productData.price));
+      formData.append("qty", String(productData.qty));
+      formData.append("categoryId", category);
 
       if (imageFile) {
         formData.append("file", imageFile);
@@ -114,26 +126,36 @@ export const Edit = () => {
 
       <section>
         <form className="InputField">
-          <SendImage onImageSelect={setImageFile} />
-          <Input
-            placeholder="nome do produto"
-            type="text"
-            name="name"
-            value={productData.name}
-            onChange={handleInputChange}
-          />
-          <Select
-            values={categories}
-            onChange={handleCategoryChange}
-            id={productData.category?.id}
-          />
-          <Input
-            placeholder="preço"
-            type="number"
-            name="price"
-            value={productData.price}
-            onChange={handleInputChange}
-          />
+          <div className="up">
+            <SendImage onImageSelect={setImageFile} />
+            <Input
+              placeholder="nome do produto"
+              type="text"
+              name="name"
+              value={productData.name}
+              onChange={handleInputChange}
+            />
+            <Select
+              values={categories}
+              onChange={(e) => setCategory(e)}
+              id={productData.category?.id}
+            />
+          </div>
+          <div className="down">
+            <Input
+              placeholder="preço"
+              type="number"
+              name="price"
+              value={productData.price}
+              onChange={handleInputChange}
+            />
+            <Input
+              placeholder="quantidade"
+              type="number"
+              value={productData.qty}
+              onChange={handleInputChange}
+            />
+          </div>
           <Textarea
             placeholder="descrição"
             name="description"
@@ -147,9 +169,7 @@ export const Edit = () => {
         <Button onClick={handleSaveChanges}>
           <label htmlFor="">Salvar Alterações</label>
         </Button>
-        <Button>
-          <label htmlFor="">Excluir Prato</label>
-        </Button>
+        <InputSmall value={"Excluir alterações"} />
       </div>
     </main>
   );

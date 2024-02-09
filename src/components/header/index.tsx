@@ -13,12 +13,13 @@ export const Header = () => {
       <a className="coders" href="/">
         CODER's Menu
       </a>
+
       <div className="search-wrapper">
         <input className="search" type="text" />
       </div>
 
       <div>
-        <Button onClick={() => navigate("/new")}>
+        <Button className="new" onClick={() => navigate("/new")}>
           <label htmlFor="">New</label>
         </Button>
       </div>
