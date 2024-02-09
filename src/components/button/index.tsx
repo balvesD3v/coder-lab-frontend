@@ -1,14 +1,8 @@
 import "./styles.scss";
 
-interface ButtonProps {
-  title: string;
-  link?: string;
-}
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export const Button: React.FC<ButtonProps> = ({ title, link }) => {
-  return (
-    <a className="button" href={link}>
-      {title}
-    </a>
-  );
+export const Button = ({ children, ...props }: ButtonProps) => {
+  return <button {...props}>{children}</button>;
 };

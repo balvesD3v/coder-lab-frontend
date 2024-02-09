@@ -1,12 +1,29 @@
 import "./styles.scss";
 import { FaAngleLeft } from "react-icons/fa6";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import imageTeste from "../../assets/Mask group.png";
 import { Button } from "../../components/button";
+import { useEffect, useState } from "react";
+import { ProductData } from "../../@types/product";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 export const Details = () => {
+  const { token } = useAuth();
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [product, setProduct] = useState<ProductData | null>(null);
 
+  const handleGetProductById = async () => {
+    const { data } = await api.get<ProductData>(`/product/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setProduct(data);
+  };
+
+  useEffect(() => {
+    handleGetProductById();
+  }, [id]);
   return (
     <main>
       <div className="header">
@@ -18,7 +35,9 @@ export const Details = () => {
         </div>
         <div>
           <div>
-            <Button title="new" link="/new" />
+            <Button onClick={() => navigate("/new")}>
+              <label htmlFor="">New</label>
+            </Button>
           </div>
         </div>
         <div className="user">user</div>
@@ -30,14 +49,16 @@ export const Details = () => {
         </Link>
         <div className="ContentStyled">
           <div className="imagePhoto">
-            <img src={imageTeste} alt="" />
+            <img src={product?.photo} alt="" />
           </div>
 
           <div className="InfoContent">
-            <h1>Produto</h1>
-            <p>Descrição</p>
+            <h1>{product?.name}</h1>
+            <p>{product?.description}</p>
 
-            <Button title="Atualizar Prato" link="/edit/:id" />
+            <Button onClick={() => navigate(`/edit/${product?.id}`)}>
+              <label htmlFor="">Atualizar prato</label>
+            </Button>
           </div>
         </div>
       </div>

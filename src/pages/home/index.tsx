@@ -8,9 +8,11 @@ import { useAuth } from "../../hooks/auth";
 import { useEffect, useState } from "react";
 import { ProductData } from "../../@types/product";
 import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const { token, signOut } = useAuth();
+  const navigate = useNavigate();
   const [products, setProducts] = useState<ProductData[]>([]);
 
   const handleGetAllProducts = async () => {
@@ -34,8 +36,11 @@ export const Home = () => {
         <div className="search-wrapper">
           <input className="search" type="text" />
         </div>
+
         <div>
-          <Button title="new" link="/new" />
+          <Button onClick={() => navigate("/new")}>
+            <label htmlFor="">New</label>
+          </Button>
         </div>
         <div className="user">user</div>
         <a href="/" className="signOut" onClick={signOut}>

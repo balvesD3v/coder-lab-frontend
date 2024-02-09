@@ -42,8 +42,12 @@ export const Edit = () => {
       </section>
 
       <div className="button-save">
-        <Button title={"Salvar Alterações"} link="/edit" />
-        <Button title={"Excluir Alterações"} link="/edit" />
+        <Button>
+          <label htmlFor="">Salvar Alterações</label>
+        </Button>
+        <Button>
+          <label htmlFor="">Excluir Alterações</label>
+        </Button>
       </div>
     </main>
   );
