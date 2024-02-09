@@ -1,5 +1,5 @@
-import { FaAngleLeft } from "react-icons/fa6";
 import "./styles.scss";
+import { FaAngleLeft } from "react-icons/fa6";
 import { Select } from "../../components/select";
 import { Input } from "../../components/input";
 import { SendImage } from "../../components/sendImage";
@@ -91,25 +91,25 @@ export const New = () => {
   }, []);
 
   return (
-    <main className="DivStyled">
+    <main className="containernew">
       <a href="/" className="linkto">
         <FaAngleLeft /> Back
       </a>
 
       <h1 className="new">Add new product</h1>
 
-      <section>
+      <section className="content">
         <div className="InputField">
           <div className="up">
             <SendImage onImageSelect={setPhotoFile} />
+            <Select values={categories} onChange={(e) => setCategory(e)} />
+          </div>
+          <div className="down">
             <Input
               placeholder="product name"
               type="text"
               onChange={(e) => setName(e.target.value)}
             />
-            <Select values={categories} onChange={(e) => setCategory(e)} />
-          </div>
-          <div className="down">
             <InputPrice
               placeholder="price"
               type="number"
@@ -132,7 +132,7 @@ export const New = () => {
 
       <div className="button-save">
         <Button onClick={handleNewDish}>
-          <label htmlFor="">Salvar Alterações</label>
+          <label htmlFor="">Save editions</label>
         </Button>
       </div>
     </main>

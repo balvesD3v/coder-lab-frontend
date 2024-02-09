@@ -7,6 +7,7 @@ import { InputSmall } from "../../components/inputSmall";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
+import { Button } from "../../components/button";
 
 type Name = { name: string };
 type Email = { email: string };
@@ -72,7 +73,9 @@ export const SignUp: React.FC = () => {
               onChange={(e) => setPassword({ password: e.target.value })}
             />
 
-            <InputSmall title=" Criar conta" onClick={handleSignUp} />
+            <Button onClick={handleSignUp}>
+              <label htmlFor="">Fazer Login</label>
+            </Button>
 
             <a className="login" href="/login">
               Já tenho uma conta

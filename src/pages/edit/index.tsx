@@ -124,7 +124,7 @@ export const Edit = () => {
   };
 
   return (
-    <main className="DivStyled">
+    <main className="containeredit">
       <a href="/" className="linkto">
         <FaAngleLeft /> Back
       </a>
@@ -135,13 +135,7 @@ export const Edit = () => {
         <form className="InputField">
           <div className="up">
             <SendImage onImageSelect={setImageFile} />
-            <Input
-              placeholder="product name"
-              type="text"
-              name="name"
-              value={productData.name}
-              onChange={handleInputChange}
-            />
+
             <Select
               values={categories}
               onChange={handleCategoryChange}
@@ -154,6 +148,13 @@ export const Edit = () => {
               type="number"
               name="price"
               value={productData.price}
+              onChange={handleInputChange}
+            />{" "}
+            <Input
+              placeholder="product name"
+              type="text"
+              name="name"
+              value={productData.name}
               onChange={handleInputChange}
             />
             <Input
@@ -174,13 +175,13 @@ export const Edit = () => {
 
       <div className="button-save">
         <Button onClick={handleSaveChanges}>
-          <label htmlFor="">Salvar Alterações</label>
+          <label htmlFor="">Save editions</label>
         </Button>
         <Button
           onClick={handleDeleteProduct}
           style={{ backgroundColor: "#5e161f" }}
         >
-          <label htmlFor="">Excluir Produto</label>
+          <label htmlFor="">Delete Product</label>
         </Button>
       </div>
     </main>

@@ -88,10 +88,13 @@
   }
 }
 
-.content {
+.content-home {
   grid-area: content;
-  gap: 2em;
-  padding: 4em;
+  padding: 2em 10em;
+
+  @media (max-width: 426px) {
+    padding: 1em 0;
+  }
 
   h2 {
     color: #fff;

@@ -25,28 +25,26 @@ export const Details = () => {
     handleGetProductById();
   }, [id]);
   return (
-    <main>
-      <div className="content">
-        <Link to="/" className="linkto">
-          <FaAngleLeft /> voltar
-        </Link>
-        <div className="ContentStyled">
-          <div className="imagePhoto">
-            <img src={product?.photo} alt="" />
-          </div>
+    <div className="contentDetails">
+      <Link to="/" className="linkto">
+        <FaAngleLeft /> voltar
+      </Link>
+      <div className="ContentStyled">
+        <div className="imagePhoto">
+          <img src={product?.photo} alt="" />
+        </div>
 
-          <div className="InfoContent">
-            <h1>{product?.name}</h1>
-            <p>{product?.description}</p>
-            <p>{product?.qty}</p>
-            <p>R${product?.price}</p>
+        <div className="InfoContent">
+          <h1>{product?.name}</h1>
+          <p>{product?.description}</p>
+          <p>{product?.qty}</p>
+          <p>R${product?.price}</p>
 
-            <Button onClick={() => navigate(`/edit/${product?.id}`)}>
-              <label htmlFor="">Atualizar prato</label>
-            </Button>
-          </div>
+          <Button onClick={() => navigate(`/edit/${product?.id}`)}>
+            <label htmlFor="">Update Product</label>
+          </Button>
         </div>
       </div>
-    </main>
+    </div>
   );
 };

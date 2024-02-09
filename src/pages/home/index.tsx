@@ -2,8 +2,6 @@ import "./styles.scss";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import { Product } from "../../components/product";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { Button } from "../../components/button";
-import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { useAuth } from "../../hooks/auth";
 import { useEffect, useState } from "react";
 import { ProductData } from "../../@types/product";
@@ -29,7 +27,7 @@ export const Home = () => {
 
   return (
     <div className="container">
-      <section className="content">
+      <section className="content-home">
         <h2>Snacks</h2>
 
         <Splide
@@ -54,7 +52,7 @@ export const Home = () => {
         </Splide>
       </section>
 
-      <section className="content">
+      <section className="content-home">
         <h2>Desserts</h2>
 
         <Splide
@@ -79,7 +77,7 @@ export const Home = () => {
         </Splide>
       </section>
 
-      <section className="content">
+      <section className="content-home">
         <h2>Drinks</h2>
 
         <Splide

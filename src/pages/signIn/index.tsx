@@ -6,6 +6,7 @@ import { InputSmall } from "../../components/inputSmall";
 import { useAuth } from "../../hooks/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/button";
 
 export function SignIn() {
   const navigate = useNavigate();
@@ -39,7 +40,9 @@ export function SignIn() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <InputSmall title="Fazer login" onClick={handleSignIn} />
+            <Button onClick={handleSignIn}>
+              <label htmlFor="">Fazer Login</label>
+            </Button>
 
             <a className="register" href="/">
               Crie sua conta

@@ -16,7 +16,7 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div>
-      <div className=" input-container">
+      <div className="input-container">
         {Icon && <Icon />}
         <input
           type={type}
