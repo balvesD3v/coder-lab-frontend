@@ -1,5 +1,5 @@
 import "./styles.scss";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../button";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { useAuth } from "../../hooks/auth";

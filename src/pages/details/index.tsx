@@ -13,16 +13,16 @@ export const Details = () => {
   const navigate = useNavigate();
   const [product, setProduct] = useState<ProductData | null>(null);
 
-  const handleGetProductById = async () => {
-    const { data } = await api.get<ProductData>(`/product/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setProduct(data);
-  };
-
   useEffect(() => {
+    const handleGetProductById = async () => {
+      const { data } = await api.get<ProductData>(`/product/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setProduct(data);
+    };
+
     handleGetProductById();
-  }, [id]);
+  }, [id, token]);
   return (
     <div className="contentDetails">
       <Link to="/" className="linkto">
