@@ -6,16 +6,15 @@ import {
   ReactNode,
 } from "react";
 import { api } from "../services/api";
-
-interface UserData {
-  user: any;
-  token: string;
-}
+import { User } from "../@types/user";
+import { SessionData } from "../@types/session";
 
 interface AuthContextType {
   signIn: (credentials: { email: string; password: string }) => Promise<void>;
   signOut: () => Promise<void>;
-  user: UserData | null;
+  user: User | undefined;
+  token: string | null;
+  setToken: (value: string | null) => void;
 }
 
 interface AuthProviderProps {
@@ -27,7 +26,10 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 );
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const [data, setData] = useState<UserData | null>(null);
+  const [data, setData] = useState<SessionData | null>(null);
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("@coderlab:token")
+  );
 
   async function signIn({
     email,
@@ -37,16 +39,19 @@ function AuthProvider({ children }: AuthProviderProps) {
     password: string;
   }) {
     try {
-      const response = await api.post("session", { email, password });
-      const { user, token } = response.data;
-      console.log(user);
+      const { data } = await api.post<SessionData>("session", {
+        email,
+        password,
+      });
 
-      localStorage.setItem("@coderlab:user", JSON.stringify(user));
-      localStorage.setItem("@coderlab:token", token);
+      localStorage.setItem("@coderlab:user", JSON.stringify(data.user));
+      setToken(data.token);
 
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      localStorage.setItem("@coderlab:token", data.token);
 
-      setData({ user, token });
+      api.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+
+      setData(data);
     } catch (error: any) {
       if (error.response) {
         alert(error.response.data.message);
@@ -57,8 +62,8 @@ function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function signOut() {
-    localStorage.removeItem("@coderlab:user");
-    localStorage.removeItem("@coderlab:token");
+    localStorage.clear();
+    setToken(null);
   }
 
   useEffect(() => {
@@ -73,13 +78,15 @@ function AuthProvider({ children }: AuthProviderProps) {
         console.log(userJson);
         setData({ token, user });
       } catch (error) {
-        console.error("Erro ao analisar dados do usuário:", error);
+        console.error("Fail to analyze the user:", error);
       }
     }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, user: data, signOut }}>
+    <AuthContext.Provider
+      value={{ signIn, user: data?.user, signOut, setToken, token }}
+    >
       {children}
     </AuthContext.Provider>
   );

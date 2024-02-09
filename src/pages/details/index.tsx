@@ -1,10 +1,12 @@
 import "./styles.scss";
 import { FaAngleLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import imageTeste from "../../assets/Mask group.png";
 import { Button } from "../../components/button";
 
 export const Details = () => {
+  const { id } = useParams();
+
   return (
     <main>
       <div className="header">

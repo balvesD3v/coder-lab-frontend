@@ -1,39 +1,30 @@
 import "./styles.scss";
 import { FaAngleRight } from "react-icons/fa6";
-import imageTeste from "../../assets/Mask group.png";
 import { useNavigate } from "react-router-dom";
+import { ProductData } from "../../@types/product";
 
 interface ProductProps {
-  id?: string;
-  name: string;
-  description: string;
-  price: number;
-  image?: string;
+  product: ProductData;
 }
 
-export const Product: React.FC<ProductProps> = ({
-  id,
-  name,
-  description,
-  price,
-  image,
-}) => {
+export const Product: React.FC<ProductProps> = ({ product }) => {
   const navigate = useNavigate();
-  function handleNavigation() {
-    navigate(`/details/${id}`);
-  }
 
   return (
     <div className="card">
-      <img src={imageTeste} alt="Plate" onClick={handleNavigation} />
+      <img
+        src={product.photo}
+        alt="Plate"
+        onClick={() => navigate(`/details/${product.id}`)}
+      />
       <div className="DivInfo">
         <h3>
-          {name}
+          {product.name}
           <FaAngleRight />
         </h3>
-        <p>{description}</p>
-
-        <span>R${price}</span>
+        <p>{product.description}</p>
+        <p>{product.qty}</p>
+        <span>R${product.price}</span>
       </div>
     </div>
   );

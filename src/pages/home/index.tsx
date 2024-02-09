@@ -5,9 +5,25 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Button } from "../../components/button";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { useAuth } from "../../hooks/auth";
+import { useEffect, useState } from "react";
+import { ProductData } from "../../@types/product";
+import { api } from "../../services/api";
 
 export const Home = () => {
-  const { signOut } = useAuth();
+  const { token, signOut } = useAuth();
+  const [products, setProducts] = useState<ProductData[]>([]);
+
+  const handleGetAllProducts = async () => {
+    const { data } = await api.get<ProductData[]>("/product", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    setProducts(data);
+  };
+
+  useEffect(() => {
+    handleGetAllProducts();
+  }, []);
 
   return (
     <div className="container">
@@ -42,21 +58,11 @@ export const Home = () => {
             arrows: false,
           }}
         >
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
+          {products.map((product) => (
+            <SplideSlide className="splide-slide" key={product.id}>
+              <Product product={product} />
+            </SplideSlide>
+          ))}
         </Splide>
       </section>
 
@@ -75,15 +81,11 @@ export const Home = () => {
             arrows: false,
           }}
         >
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
+          {products.map((product) => (
+            <SplideSlide className="splide-slide" key={product.id}>
+              <Product product={product} />
+            </SplideSlide>
+          ))}
         </Splide>
       </section>
 
@@ -102,15 +104,11 @@ export const Home = () => {
             arrows: false,
           }}
         >
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
-          <SplideSlide className="splide-slide">
-            <Product description="teste" name="teste" price={10} />
-          </SplideSlide>
+          {products.map((product) => (
+            <SplideSlide className="splide-slide" key={product.id}>
+              <Product product={product} />
+            </SplideSlide>
+          ))}
         </Splide>
       </section>
     </div>
