@@ -20,8 +20,14 @@ h1 {
 
 .InputField {
   display: flex;
-  gap: 1em;
+  flex-direction: column;
   margin-bottom: 2em;
+
+  .up,
+  .down {
+    display: flex;
+    gap: 1em;
+  }
 }
 
 .button-save {

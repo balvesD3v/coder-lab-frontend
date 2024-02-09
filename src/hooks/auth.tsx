@@ -14,6 +14,7 @@ interface UserData {
 
 interface AuthContextType {
   signIn: (credentials: { email: string; password: string }) => Promise<void>;
+  signOut: () => Promise<void>;
   user: UserData | null;
 }
 
@@ -55,6 +56,11 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function signOut() {
+    localStorage.removeItem("@coderlab:user");
+    localStorage.removeItem("@coderlab:token");
+  }
+
   useEffect(() => {
     const userJson = localStorage.getItem("@coderlab:user");
     const token = localStorage.getItem("@coderlab:token");
@@ -73,7 +79,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, user: data }}>
+    <AuthContext.Provider value={{ signIn, user: data, signOut }}>
       {children}
     </AuthContext.Provider>
   );

@@ -5,8 +5,23 @@ import { Input } from "../../components/input";
 import { SendImage } from "../../components/sendImage";
 import { Textarea } from "../../components/textarea";
 import { Button } from "../../components/button";
+import { useEffect, useState } from "react";
+import { Category } from "../../@types/category";
+import { api } from "../../services/api";
 
 export const Edit = () => {
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [category, setCategory] = useState("");
+
+  const handleGetCategories = () => {
+    api.get<Category[]>("/category").then(({ data }) => setCategories(data));
+  };
+
+  useEffect(() => {
+    handleGetCategories();
+  }, []);
+
   return (
     <main className="DivStyled">
       <a href="/" className="linkto">
@@ -17,9 +32,9 @@ export const Edit = () => {
 
       <section>
         <div className="InputField">
-          <SendImage />
+          <SendImage onImageSelect={setImageFile} />
           <Input placeholder="nome do produto" type="text" />
-          <Select />
+          <Select values={categories} onChange={(e) => setCategory(e)} />
           <Input placeholder="preço" type="number" />
         </div>
 
