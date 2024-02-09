@@ -1,16 +1,23 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, RouteObject, useRoutes } from "react-router-dom";
 import { Home } from "../pages/home";
 import { Details } from "../pages/details";
 import { New } from "../pages/new";
 import { Edit } from "../pages/edit";
+import { Layout } from "./layout";
 
 export function AppRoutes() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/details/:id" element={<Details />} />
-      <Route path="/new" element={<New />} />
-      <Route path="/edit/:id" element={<Edit />} />
-    </Routes>
-  );
+  const Routes: RouteObject[] = [
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { path: "/", element: <Home /> },
+        { path: "/details/:id", element: <Details /> },
+        { path: "/new", element: <New /> },
+        { path: "/edit/:id", element: <Edit /> },
+      ],
+    },
+  ];
+
+  return useRoutes(Routes);
 }

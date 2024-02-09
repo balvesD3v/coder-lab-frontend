@@ -29,27 +29,8 @@ export const Home = () => {
 
   return (
     <div className="container">
-      <div className="header">
-        <a className="coders" href="/">
-          CODER's Menu
-        </a>
-        <div className="search-wrapper">
-          <input className="search" type="text" />
-        </div>
-
-        <div>
-          <Button onClick={() => navigate("/new")}>
-            <label htmlFor="">New</label>
-          </Button>
-        </div>
-        <div className="user">user</div>
-        <a href="/" className="signOut" onClick={signOut}>
-          <FaArrowRightFromBracket className="arrowRight" />
-        </a>
-      </div>
-
       <section className="content">
-        <h2>Refeições</h2>
+        <h2>Snacks</h2>
 
         <Splide
           options={{
@@ -63,16 +44,18 @@ export const Home = () => {
             arrows: false,
           }}
         >
-          {products.map((product) => (
-            <SplideSlide className="splide-slide" key={product.id}>
-              <Product product={product} />
-            </SplideSlide>
-          ))}
+          {products
+            .filter((product) => product.category.name === "snacks")
+            .map((product) => (
+              <SplideSlide className="splide-slide" key={product.id}>
+                <Product product={product} />
+              </SplideSlide>
+            ))}
         </Splide>
       </section>
 
       <section className="content">
-        <h2>Sobremesas</h2>
+        <h2>Desserts</h2>
 
         <Splide
           options={{
@@ -86,16 +69,18 @@ export const Home = () => {
             arrows: false,
           }}
         >
-          {products.map((product) => (
-            <SplideSlide className="splide-slide" key={product.id}>
-              <Product product={product} />
-            </SplideSlide>
-          ))}
+          {products
+            .filter((product) => product.category.name === "Desserts")
+            .map((product) => (
+              <SplideSlide className="splide-slide" key={product.id}>
+                <Product product={product} />
+              </SplideSlide>
+            ))}
         </Splide>
       </section>
 
       <section className="content">
-        <h2>Bebidas</h2>
+        <h2>Drinks</h2>
 
         <Splide
           options={{
@@ -109,11 +94,13 @@ export const Home = () => {
             arrows: false,
           }}
         >
-          {products.map((product) => (
-            <SplideSlide className="splide-slide" key={product.id}>
-              <Product product={product} />
-            </SplideSlide>
-          ))}
+          {products
+            .filter((product) => product.category.name === "Drinks")
+            .map((product) => (
+              <SplideSlide className="splide-slide" key={product.id}>
+                <Product product={product} />
+              </SplideSlide>
+            ))}
         </Splide>
       </section>
     </div>

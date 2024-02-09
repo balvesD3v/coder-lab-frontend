@@ -7,56 +7,102 @@ import { Textarea } from "../../components/textarea";
 import { Button } from "../../components/button";
 import { useEffect, useState } from "react";
 import { Category } from "../../@types/category";
-import { api } from "../../services/api";
-import { EditProductFormInput, EditProductValidation } from "./types";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
-import { ProductData } from "../../@types/product";
+import { useNavigate, useParams } from "react-router-dom";
+import { productUpdated } from "../../@types/productUpdated";
 import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
 export const Edit = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { token } = useAuth();
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
   const [categories, setCategories] = useState<Category[]>([]);
-  const [category, setCategory] = useState("");
-  const [product, setProduct] = useState<ProductData | null>(null);
-
-  const handleGetProductById = async () => {
-    const { data } = await api.get<ProductData>(`/product/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setProduct(data);
-  };
-
-  const onSubmit = (values: EditProductFormInput) => {};
-
-  const { handleSubmit, reset, register, formState } =
-    useForm<EditProductFormInput>({
-      resolver: yupResolver(EditProductValidation),
-      defaultValues: {
-        categoryId: product?.category.id,
-        description: product?.description,
-        name: product?.name,
-        qty: product?.qty,
-        price: product?.price,
-      },
-    });
-
-  const handleGetCategories = () => {
-    api.get<Category[]>("/category").then(({ data }) => setCategories(data));
-  };
+  const [productData, setProductData] = useState<productUpdated>({
+    id: "",
+    name: "",
+    description: "",
+    qty: 0,
+    price: 0,
+    category: {
+      id: "",
+      name: "",
+    },
+  });
 
   useEffect(() => {
-    handleGetProductById();
-  }, [id]);
+    const fetchProductData = async () => {
+      try {
+        const { data } = await api.get(`/product/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setProductData(data);
+      } catch (error) {
+        console.error("Erro ao obter dados do produto:", error);
+      }
+    };
 
-  useEffect(() => {
-    handleGetCategories();
-  }, []);
+    const fetchCategories = async () => {
+      try {
+        const { data } = await api.get("/category");
+        setCategories(data);
+      } catch (error) {
+        console.error("Erro ao obter categorias:", error);
+      }
+    };
 
-  console.log(formState.errors);
+    fetchProductData();
+    fetchCategories();
+  }, [id, token]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategoryId(categoryId);
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("name", String(productData.name));
+      formData.append("description", String(productData.description));
+      formData.append("price", String(productData.price));
+
+      if (imageFile) {
+        formData.append("file", imageFile);
+      }
+
+      const { data } = await api.patch(`/product/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("Alterações salvas com sucesso:", data);
+      toast.success("Alterações salvas com sucesso!");
+    } catch (error) {
+      console.error("Erro ao salvar alterações:", error);
+      toast.error("Erro ao salvar alterações. Por favor, tente novamente.");
+    }
+  };
+
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   return (
     <main className="DivStyled">
@@ -67,29 +113,42 @@ export const Edit = () => {
       <h1 className="new">Editar prato</h1>
 
       <section>
-        <form className="InputField" onSubmit={handleSubmit(onSubmit)}>
+        <form className="InputField">
           <SendImage onImageSelect={setImageFile} />
           <Input
             placeholder="nome do produto"
             type="text"
-            {...register("name")}
+            name="name"
+            value={productData.name}
+            onChange={handleInputChange}
           />
           <Select
             values={categories}
-            {...register("categoryId")}
-            onChange={(e) => setCategory(e)}
+            onChange={handleCategoryChange}
+            id={productData.category?.id}
           />
-          <Input placeholder="preço" type="number" {...register("price")} />
-          <Textarea {...register("description")} />
+          <Input
+            placeholder="preço"
+            type="number"
+            name="price"
+            value={productData.price}
+            onChange={handleInputChange}
+          />
+          <Textarea
+            placeholder="descrição"
+            name="description"
+            value={productData.description || ""}
+            onChange={handleTextareaChange}
+          />
         </form>
       </section>
 
       <div className="button-save">
-        <Button>
+        <Button onClick={handleSaveChanges}>
           <label htmlFor="">Salvar Alterações</label>
         </Button>
         <Button>
-          <label htmlFor="">Excluir Alterações</label>
+          <label htmlFor="">Excluir Prato</label>
         </Button>
       </div>
     </main>

@@ -123,7 +123,11 @@ export const New = () => {
           </div>
         </div>
 
-        <Textarea onChange={(e) => setDescription(e.target.value)} />
+        <Textarea
+          placeholder="descrição"
+          name="description"
+          onChange={(e) => setDescription(e.target.value)}
+        />
       </section>
 
       <div className="button-save">

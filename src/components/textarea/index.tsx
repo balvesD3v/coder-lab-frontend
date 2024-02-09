@@ -1,14 +1,24 @@
 import "./styles.scss";
 
-interface textAreaProps {
+interface TextareaProps {
+  placeholder?: string;
+  name: string | undefined;
+  value?: string | undefined;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export const Textarea: React.FC<textAreaProps> = ({ onChange }) => {
+export const Textarea: React.FC<TextareaProps> = ({
+  placeholder,
+  name,
+  value,
+  onChange,
+}) => {
   return (
     <textarea
       cols={140}
-      placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+      placeholder={placeholder}
+      name={name}
+      value={value}
       onChange={onChange}
     ></textarea>
   );

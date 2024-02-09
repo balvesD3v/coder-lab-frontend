@@ -26,23 +26,6 @@ export const Details = () => {
   }, [id]);
   return (
     <main>
-      <div className="header">
-        <a className="coders" href="/">
-          CODER's Menu
-        </a>
-        <div className="search-wrapper">
-          <input className="search" type="text" />
-        </div>
-        <div>
-          <div>
-            <Button onClick={() => navigate("/new")}>
-              <label htmlFor="">New</label>
-            </Button>
-          </div>
-        </div>
-        <div className="user">user</div>
-      </div>
-
       <div className="content">
         <Link to="/" className="linkto">
           <FaAngleLeft /> voltar
