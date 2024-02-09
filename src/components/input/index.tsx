@@ -1,6 +1,6 @@
 import "./styles.scss";
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ComponentType;
   placeholder: string;
   type: string;
