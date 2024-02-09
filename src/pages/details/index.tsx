@@ -38,6 +38,8 @@ export const Details = () => {
           <div className="InfoContent">
             <h1>{product?.name}</h1>
             <p>{product?.description}</p>
+            <p>{product?.qty}</p>
+            <p>R${product?.price}</p>
 
             <Button onClick={() => navigate(`/edit/${product?.id}`)}>
               <label htmlFor="">Atualizar prato</label>

@@ -11,9 +11,9 @@
   border: none;
   transition: 100ms linear;
   font-family: "JetBrains Mono";
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
     text-decoration: none;
     color: #fff;
 

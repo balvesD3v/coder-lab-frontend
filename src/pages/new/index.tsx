@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { InputSmall } from "../../components/inputSmall";
 import { InputPrice } from "../../components/inputPrice";
 import { Category } from "../../@types/category";
 import { Button } from "../../components/button";
@@ -30,27 +29,27 @@ export const New = () => {
 
   async function handleNewDish() {
     if (!name) {
-      return toast.error("Digite o título da nota");
+      return toast.error("Enter the title of the note");
     }
 
     if (!category) {
-      return toast.error("Escolha uma categoria para o prato");
+      return toast.error("Choose a category for the product");
     }
 
     if (!price) {
-      return toast.error("Digite um preço para o prato");
+      return toast.error("Enter a price for the product");
     }
 
     if (!qty) {
-      return toast.error("Digite uma quantidade para o prato");
+      return toast.error("Enter a quantity for the product");
     }
 
     if (price < 0) {
-      return toast.error("Digite um preço acima de 0");
+      return toast.error("Enter a price for the product greater than 0");
     }
 
     if (!description) {
-      return toast.error("Escreva uma descrição para o prato");
+      return toast.error("Write a description for the product");
     }
 
     try {
@@ -78,7 +77,7 @@ export const New = () => {
       if (error.response) {
         toast.error(error.response.data.message);
       } else {
-        toast.error("Não foi possível entrar.");
+        toast.error("Unable to enter.");
       }
     }
   }
@@ -94,17 +93,17 @@ export const New = () => {
   return (
     <main className="DivStyled">
       <a href="/" className="linkto">
-        <FaAngleLeft /> voltar
+        <FaAngleLeft /> Back
       </a>
 
-      <h1 className="new">Adicionar prato</h1>
+      <h1 className="new">Add new product</h1>
 
       <section>
         <div className="InputField">
           <div className="up">
             <SendImage onImageSelect={setPhotoFile} />
             <Input
-              placeholder="nome do produto"
+              placeholder="product name"
               type="text"
               onChange={(e) => setName(e.target.value)}
             />
@@ -112,12 +111,12 @@ export const New = () => {
           </div>
           <div className="down">
             <InputPrice
-              placeholder="preço"
+              placeholder="price"
               type="number"
               onChange={handlePriceChange}
             />
             <Input
-              placeholder="quantidade"
+              placeholder="quantity"
               type="number"
               onChange={(e) => setQty(e.target.value)}
             />
@@ -125,7 +124,7 @@ export const New = () => {
         </div>
 
         <Textarea
-          placeholder="descrição"
+          placeholder="description"
           name="description"
           onChange={(e) => setDescription(e.target.value)}
         />

@@ -12,7 +12,6 @@ import { productUpdated } from "../../@types/productUpdated";
 import { useAuth } from "../../hooks/auth";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
-import { InputSmall } from "../../components/inputSmall";
 
 export const Edit = () => {
   const navigate = useNavigate();
@@ -20,7 +19,6 @@ export const Edit = () => {
   const { token } = useAuth();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
-  const [category, setCategory] = useState("");
   const [categories, setCategories] = useState<Category[]>([]);
   const [productData, setProductData] = useState<productUpdated>({
     id: "",
@@ -44,7 +42,7 @@ export const Edit = () => {
         });
         setProductData(data);
       } catch (error) {
-        console.error("Erro ao obter dados do produto:", error);
+        console.error("Error getting product data:", error);
       }
     };
 
@@ -53,7 +51,7 @@ export const Edit = () => {
         const { data } = await api.get("/category");
         setCategories(data);
       } catch (error) {
-        console.error("Erro ao obter categorias:", error);
+        console.error("Error getting categories:", error);
       }
     };
 
@@ -88,7 +86,7 @@ export const Edit = () => {
       formData.append("description", String(productData.description));
       formData.append("price", String(productData.price));
       formData.append("qty", String(productData.qty));
-      formData.append("categoryId", category);
+      formData.append("categoryId", String(productData.category?.id));
 
       if (imageFile) {
         formData.append("file", imageFile);
@@ -100,11 +98,20 @@ export const Edit = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("Alterações salvas com sucesso:", data);
-      toast.success("Alterações salvas com sucesso!");
+      toast.success("Changes saved successfully!");
     } catch (error) {
-      console.error("Erro ao salvar alterações:", error);
-      toast.error("Erro ao salvar alterações. Por favor, tente novamente.");
+      console.error("Error saving changes:", error);
+      toast.error("Error saving changes. Please try again.");
+    }
+  };
+
+  const handleDeleteProduct = async () => {
+    try {
+      await api.delete(`/product/${id}`);
+      toast.error("Success product deleted");
+      navigate("/");
+    } catch (error) {
+      toast.error("Unable to delete dish, try again later!");
     }
   };
 
@@ -119,17 +126,17 @@ export const Edit = () => {
   return (
     <main className="DivStyled">
       <a href="/" className="linkto">
-        <FaAngleLeft /> voltar
+        <FaAngleLeft /> Back
       </a>
 
-      <h1 className="new">Editar prato</h1>
+      <h1 className="new">Edit Product</h1>
 
       <section>
         <form className="InputField">
           <div className="up">
             <SendImage onImageSelect={setImageFile} />
             <Input
-              placeholder="nome do produto"
+              placeholder="product name"
               type="text"
               name="name"
               value={productData.name}
@@ -137,27 +144,27 @@ export const Edit = () => {
             />
             <Select
               values={categories}
-              onChange={(e) => setCategory(e)}
+              onChange={handleCategoryChange}
               id={productData.category?.id}
             />
           </div>
           <div className="down">
             <Input
-              placeholder="preço"
+              placeholder="price"
               type="number"
               name="price"
               value={productData.price}
               onChange={handleInputChange}
             />
             <Input
-              placeholder="quantidade"
+              placeholder="quantity"
               type="number"
               value={productData.qty}
               onChange={handleInputChange}
             />
           </div>
           <Textarea
-            placeholder="descrição"
+            placeholder="description"
             name="description"
             value={productData.description || ""}
             onChange={handleTextareaChange}
@@ -169,7 +176,12 @@ export const Edit = () => {
         <Button onClick={handleSaveChanges}>
           <label htmlFor="">Salvar Alterações</label>
         </Button>
-        <InputSmall value={"Excluir alterações"} />
+        <Button
+          onClick={handleDeleteProduct}
+          style={{ backgroundColor: "#5e161f" }}
+        >
+          <label htmlFor="">Excluir Produto</label>
+        </Button>
       </div>
     </main>
   );
