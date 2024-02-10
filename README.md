@@ -2,9 +2,6 @@
 # Coder Lab frontend
 
 ![image](https://github.com/balvesD3v/coder-lab-frontend/assets/106263458/98422f76-7103-4e8b-9296-52adc5449186)
-![image](https://github.com/balvesD3v/coder-lab-frontend/assets/106263458/5a4253f9-32e3-427d-ae1b-19015f415ac1)
-
-
 
 # Importante
 Não existe produtos cadastrados, então, você pode criar produtos para ver a responsividade dos cards
