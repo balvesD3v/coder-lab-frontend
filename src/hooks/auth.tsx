@@ -40,7 +40,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     password: string;
   }) {
     try {
-      const { data } = await api.post<SessionData>("session", {
+      const { data } = await api.post<SessionData>("auth/login", {
         email,
         password,
       });
