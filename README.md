@@ -1,47 +1,51 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Coder Lab frontend
 
-## Available Scripts
 
-In the project directory, you can run:
+## Sobre o projeto
+Este projeto foi feito para teste da vaga fullstack para a coder lab, foi um projeto bem interessante de ser realizado e utilizei tecnologias que eu não havia utilizado. Espero que esse projeto venha agradar seus olhos haha
 
-### `npm start`
+## Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Principais recursos para usuários comuns:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Adicionar novos produtos
+- Visualizar detalhes abrangentes sobre um produto específico.
+- Deletar um produto
+- Atualizar um produto
 
-### `npm test`
+## Tecnologia utilizada
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Front-end
+- React
+- React-router-dom
+- Sass
+- Typescript
+- Splide
+- React icons
+- Axios
 
-### `npm run build`
+## Por quais motivos utilizei essas tecnologias?
+- Utilizei o react no front com react-router-dom para a utilizar as rotas e poder alternar entre as paginas da aplicação, também utilizei o sass para a estilização e com o react utilizei junto o typeScript para melhor entendimento do código. Splide foi utilizado para a criação dos slides do component card de produto, react icons para alguns icones do projeto e o axios para fazer as requisições para o backend.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Como executar o projeto
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# clonar repositório
+   git clone git@github.com:balvesD3v/coder-lab-frontend.git
 
-### `npm run eject`
+# instale as dependencias 
+    npm install 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# inicie o projeto
+    npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Aliás não se esqueça de iniciar o back-end
+Caso de algum erro na tela home, aperte f5
+## Autor
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [@balvesD3v](https://github.com/balvesD3v)
+- [@paulobarbosacode](https://www.linkedin.com/in/paulobarbosacode/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# coder-lab-frontend
