@@ -20,6 +20,14 @@
   img {
     height: 400px;
   }
+  @media (max-width: 426px) {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      display: none;
+    }
+  }
 }
 
 .input-field {

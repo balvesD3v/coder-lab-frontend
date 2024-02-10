@@ -35,6 +35,9 @@ export const Home = () => {
               426: {
                 perPage: 1,
               },
+              769: {
+                perPage: 3,
+              },
             },
             type: "slide",
             arrows: false,
