@@ -28,9 +28,10 @@ Este projeto foi feito para teste da vaga fullstack para a coder lab, foi um pro
 - Splide
 - React icons
 - Axios
+- Toast
 
 ## Por quais motivos utilizei essas tecnologias?
-- Utilizei o react no front com react-router-dom para a utilizar as rotas e poder alternar entre as paginas da aplicação, também utilizei o sass para a estilização e com o react utilizei junto o typeScript para melhor entendimento do código. Splide foi utilizado para a criação dos slides do component card de produto, react icons para alguns icones do projeto e o axios para fazer as requisições para o backend.
+- Utilizei o react no front com react-router-dom para a utilizar as rotas e poder alternar entre as paginas da aplicação, também utilizei o sass para a estilização e com o react utilizei junto o typeScript para melhor entendimento do código. Splide foi utilizado para a criação dos slides do component card de produto, react icons para alguns icones do projeto, toast para as notificações personalizadas e o axios para fazer as requisições para o backend.
 
 
 ## Como executar o projeto
